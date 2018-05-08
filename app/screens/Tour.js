@@ -36,7 +36,9 @@ class Tour extends Component {
         <View style={styles.container}>
           <LogoImage />
           <TouchableNativeFeedback
-            onPress={()=>{this.props.navigation.navigate('SignIn')}}
+            onPress={() => {
+              this.props.navigation.navigate("SignIn");
+            }}
             background={TouchableNativeFeedback.SelectableBackground()}
           >
             <View style={styles.logInBtn}>

@@ -72,7 +72,7 @@ class SignIn extends Component {
           </TouchableNativeFeedback>
         </View>
         <TouchableNativeFeedback
-          onPress={this._onPress}
+          onPress={() => {this.props.navigation.navigate('ProductPage')}}
           background={TouchableNativeFeedback.SelectableBackground()}
         >
           <View style={styles.forwardBtn}>
