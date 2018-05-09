@@ -1,6 +1,14 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, Image, Dimensions } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  TouchableNativeFeedback
+} from "react-native";
 import Carousel, { Pagination } from "react-native-snap-carousel";
+import ButtonText from "../components/ButtonText";
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   "window"
@@ -25,7 +33,7 @@ class MyCarousel extends Component {
       <Pagination
         dotsLength={entries.length}
         activeDotIndex={activeSlide}
-        containerStyle={{ backgroundColor: "#f4f3f3" }}
+        containerStyle={{ backgroundColor: "#fff" }}
         dotStyle={{
           width: 10,
           height: 10,
@@ -78,7 +86,17 @@ class MyCarousel extends Component {
           inactiveSlideOpacity={0.7}
           onSnapToItem={index => this.setState({ activeSlide: index })}
         />
-        {this.pagination}
+        <View style={styles.addCartBtnView}>
+          <TouchableNativeFeedback
+            onPress={() => {}}
+            background={TouchableNativeFeedback.SelectableBackground()}
+          >
+            <View style={styles.addCartBtn}>
+              <ButtonText color="#fff" text="Add To Cart" />
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+        <View style={styles.paginationView}>{this.pagination}</View>
       </View>
     );
   }
@@ -86,6 +104,17 @@ class MyCarousel extends Component {
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 30
-  }
+  },
+  addCartBtn: {
+    width: 200,
+    height: 50,
+    borderRadius: 40,
+    backgroundColor: "#43d87a",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1
+  },
+  addCartBtnView: { position: "relative", bottom: 75, left: 75 },
+  paginationView: { position: "relative", bottom: 50 }
 });
 export default MyCarousel;

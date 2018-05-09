@@ -11,7 +11,10 @@ import { ToastAndroid } from "react-native";
 import Caraousel, { Pagination } from "react-native-snap-carousel";
 import HeaderText from "../components/HeaderText";
 import MyCarousal from "../components/MyCarousel";
+import InfoDelTab from "../components/InfoDel/InfoDelTab";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import InfoDelContainer from "../components/InfoDel/InfoDelTab";
+import ExtraImg from "../components/ExtrasImg";
 
 export default class ProductPage extends Component {
   constructor() {
@@ -65,24 +68,47 @@ export default class ProductPage extends Component {
           scrollEventThrottle={200}
           directionalLockEnabled={true}
         >
-          <View style={{ flex: 1 }}>
+          <View style={{ marginBottom: -50 }}>
             <MyCarousal />
-          </View>
-          <View style={styles.sizeView}>
-            <View style={styles.picker}>
-              <Picker
-                mode="dropdown"
-                selectedValue={this.state.size}
-                onValueChange={(itemValue, itemIndex) => {
-                  this.setState({ size: itemValue });
-                }}
-              >
-                <Picker.Item label="Small" value="small" />
-                <Picker.Item label="Medium" value="medium" />
-                <Picker.Item label="Large" value="large" />
-              </Picker>
+            <View style={styles.sizeView}>
+              <View style={styles.picker}>
+                <Picker
+                  mode="dropdown"
+                  selectedValue={this.state.size}
+                  onValueChange={(itemValue, itemIndex) => {
+                    this.setState({ size: itemValue });
+                  }}
+                >
+                  <Picker.Item label="Small" value="small" />
+                  <Picker.Item label="Medium" value="medium" />
+                  <Picker.Item label="Large" value="large" />
+                </Picker>
+              </View>
+              <View style={styles.iconView}>
+                <Icon name="circle" color="#0542aa" size={40} />
+                <Icon name="check-circle" color="#3b3b3b" size={40} />
+              </View>
             </View>
           </View>
+
+          <View style={styles.emptyContainer} />
+
+          <View style={{ flex: 1 }}>
+            <InfoDelContainer />
+          </View>
+
+          <View style = {{flexDirection:"row",justifyContent:"center",padding:10}}>
+          <HeaderText text = "Also in this category" ownStyles = {{color : "#dbdbdb"}} />
+          </View>
+          <ExtraImg />
+          <TouchableNativeFeedback
+          onPress={() => {}}
+          background={TouchableNativeFeedback.SelectableBackground()}
+        >
+          <View style={styles.backwardBtn}>
+            <Icon name="arrow-left" size={30} color="#fff" />
+          </View>
+        </TouchableNativeFeedback>
         </ScrollView>
       </View>
     );
@@ -96,7 +122,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   headerStyle: {
-    backgroundColor: "#f4f3f3",
+    backgroundColor: "#fff",
     elevation: 0,
     shadowOpacity: 0
   },
@@ -104,14 +130,30 @@ const styles = StyleSheet.create({
     paddingRight: 15
   },
   container: {
+    flex: 1,
+    backgroundColor: "#fff"
+  },
+  emptyContainer: {
     backgroundColor: "#f4f3f3",
-    flex: 1
+    height: 30,
+    width: "100%",
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    borderTopColor: "#ccc",
+    borderBottomColor: "#ccc"
   },
   scrollview: {
     flex: 1
   },
   sizeView: {
     flex: 0.3,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    position: "relative",
+    bottom: 85
+  },
+  iconView: {
     flexDirection: "row"
   },
   picker: {
@@ -121,4 +163,11 @@ const styles = StyleSheet.create({
     margin: 10,
     width: 150
   },
+  backwardBtn : {
+    width:'100%',
+    height : 60,
+    backgroundColor: "#1d1d1d",
+    justifyContent:'center',
+    alignItems:'center'
+  }
 });

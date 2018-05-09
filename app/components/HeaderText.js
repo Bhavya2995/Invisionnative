@@ -7,8 +7,7 @@ class HeaderText extends Component {
     return (
       <View>
         <Text {...this.props} style={[styles.headerText, ownStyles]}>
-          {" "}
-          {text}{" "}
+          {text}
         </Text>
       </View>
     );
