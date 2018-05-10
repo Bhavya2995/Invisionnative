@@ -48,7 +48,7 @@ class InfoDelContainer extends Component {
 
   renderInfo() {
     return (
-      <View style={styles.infoView}>
+      <View style={styles.tabView}>
         <HeaderText text="Urban ninjas favourite hoodies for leisure times" />
         <FlatList
           data={this.state.list}
@@ -64,7 +64,7 @@ class InfoDelContainer extends Component {
   }
   renderDelivery() {
     return (
-      <View style={{ height: "100%" }}>
+      <View style={styles.tabView}>
         <HeaderText text="Delivery" />
       </View>
     );
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderRightColor: "#ccc"
   },
-  infoView: {
+  tabView: {
     flex: 1,
     padding: 10
   },

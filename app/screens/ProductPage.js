@@ -45,6 +45,7 @@ export default class ProductPage extends Component {
             ) : (
               <Icon name="heart-outline" size={30} />
             )}
+            
           </View>
         </TouchableNativeFeedback>
       )
@@ -59,6 +60,21 @@ export default class ProductPage extends Component {
   _changeWishList() {
     this.setState({ wishlisted: !this.state.wishlisted });
     this.props.navigation.setParams({ wishlisted: !this.state.wishlisted });
+   setTimeout(() => ( this.state.wishlisted
+      ? ToastAndroid.showWithGravityAndOffset(
+          "Added to wishlist",
+          ToastAndroid.SHORT,
+          ToastAndroid.BOTTOM,
+          0,
+          150
+        )
+      : ToastAndroid.showWithGravityAndOffset(
+          "Removed from wishlist",
+          ToastAndroid.SHORT,
+          ToastAndroid.BOTTOM,
+          0,
+          150
+        )),700)
   }
   render() {
     return (
@@ -97,18 +113,27 @@ export default class ProductPage extends Component {
             <InfoDelContainer />
           </View>
 
-          <View style = {{flexDirection:"row",justifyContent:"center",padding:10}}>
-          <HeaderText text = "Also in this category" ownStyles = {{color : "#dbdbdb"}} />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              padding: 10
+            }}
+          >
+            <HeaderText
+              text="Also in this category"
+              ownStyles={{ color: "#dbdbdb" }}
+            />
           </View>
           <ExtraImg />
           <TouchableNativeFeedback
-          onPress={() => {}}
-          background={TouchableNativeFeedback.SelectableBackground()}
-        >
-          <View style={styles.backwardBtn}>
-            <Icon name="arrow-left" size={30} color="#fff" />
-          </View>
-        </TouchableNativeFeedback>
+            onPress={() => {}}
+            background={TouchableNativeFeedback.SelectableBackground()}
+          >
+            <View style={styles.backwardBtn}>
+              <Icon name="arrow-left" size={30} color="#fff" />
+            </View>
+          </TouchableNativeFeedback>
         </ScrollView>
       </View>
     );
@@ -163,11 +188,11 @@ const styles = StyleSheet.create({
     margin: 10,
     width: 150
   },
-  backwardBtn : {
-    width:'100%',
-    height : 60,
+  backwardBtn: {
+    width: "100%",
+    height: 60,
     backgroundColor: "#1d1d1d",
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
