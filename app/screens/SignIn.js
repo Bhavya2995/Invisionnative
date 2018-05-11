@@ -18,6 +18,10 @@ class SignIn extends Component {
       email: "",
       password: ""
     };
+    // this.textInput = React.createRef();
+  }
+  clearText = () => {
+    this._textInput.setNativeProps({text: ''});
   }
   static navigationOptions = ({ navigation }) => {
     return {
@@ -38,6 +42,9 @@ class SignIn extends Component {
         <View style={styles.formView}>
           <View style={{ paddingTop: 10, paddingBottom: 10 }}>
             <TextInput
+              ref={input => {
+                this.textInput = input;
+              }}
               style={styles.inputText}
               placeholder="EMAIL"
               placeholderTextColor="#353232"
@@ -47,9 +54,13 @@ class SignIn extends Component {
               selectionColor="#c1c0c1"
               underlineColorAndroid="#c1c0c1"
               onChangeText={text => this.setState({ email: text })}
+              blurOnSubmit={true}
             />
           </View>
           <TextInput
+            ref={input => {
+              this.textInput = input;
+            }}
             style={styles.inputText}
             placeholder="PASSWORD"
             placeholderTextColor="#353232"
@@ -61,18 +72,30 @@ class SignIn extends Component {
             secureTextEntry={true}
           />
         </View>
-        <View style={styles.fbBtnView}>
+        <View style={styles.btnView}>
+          <TouchableNativeFeedback
+            onPress={this._onPress}
+            background={TouchableNativeFeedback.SelectableBackground()}
+          >
+            <View style={styles.googleBtn}>
+              <ButtonText color="red" text="SIGN IN VIA GOOGLE" />
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+        <View style={styles.btnView}>
           <TouchableNativeFeedback
             onPress={this._onPress}
             background={TouchableNativeFeedback.SelectableBackground()}
           >
             <View style={styles.fbBtn}>
-              <ButtonText color="blue" text="SIGN UP VIA FACEBOOK" />
+              <ButtonText color="blue" text="SIGN IN VIA FACEBOOK" />
             </View>
           </TouchableNativeFeedback>
         </View>
         <TouchableNativeFeedback
-          onPress={() => {this.props.navigation.navigate('ProductPage')}}
+          onPress={() => {
+            this.props.navigation.navigate("ProductPage");
+          }}
           background={TouchableNativeFeedback.SelectableBackground()}
         >
           <View style={styles.forwardBtn}>
@@ -99,7 +122,7 @@ const styles = StyleSheet.create({
     flex: 3,
     width: "85%"
   },
-  fbBtnView: {
+  btnView: {
     flex: 1
   },
   inputText: {
@@ -129,12 +152,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  forwardBtn : {
-    width:'100%',
-    height : 60,
+  googleBtn: {
+    width: 260,
+    height: 50,
+    borderColor: "red",
+    borderWidth: 2,
+    borderRadius: 40,
+    backgroundColor: "transparent",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  forwardBtn: {
+    width: "100%",
+    height: 60,
     backgroundColor: "#43d87a",
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 

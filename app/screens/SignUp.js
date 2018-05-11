@@ -10,6 +10,8 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import HeaderText from "../components/HeaderText";
 import LogoImage from "../components/LogoImage";
 import ButtonText from "../components/ButtonText";
+import GoogleSignIn from 'react-native-google-sign-in';
+
 
 class SignUp extends Component {
   constructor() {
@@ -30,6 +32,30 @@ class SignUp extends Component {
       headerStyle: styles.headerStyle
     };
   };
+  async _GoogleSignIn(){
+    await GoogleSignIn.configure({
+      scopes: ['email','profile'],
+      shouldFetchBasicProfile: true,
+    })
+    const user = await GoogleSignIn.signInPromise();
+
+    console.log(user);
+  }
+  // _signOut() {
+  //   return new Promise((resolve, reject) => {
+  //     const offSuccess = GoogleSignIn.onSignOut((data) => {
+  //       offSuccess();
+  //       offError();
+  //       resolve(data);
+  //     });
+  //     const offError = GoogleSignIn.onSignOutError((error) => {
+  //       offSuccess();
+  //       offError();
+  //       reject(error);
+  //     });
+  //     GoogleSignIn.signOut();
+  //   });
+  // }
   render() {
     return (
       <View style={styles.container}>
@@ -72,9 +98,19 @@ class SignUp extends Component {
             secureTextEntry={true}
           />
         </View>
-        <View style={styles.fbBtnView}>
+        <View style={styles.btnView}>
           <TouchableNativeFeedback
-            onPress={this._onPress}
+            onPress={this._GoogleSignIn}
+            background={TouchableNativeFeedback.SelectableBackground()}
+          >
+            <View style={styles.googleBtn}>
+              <ButtonText color="red" text="SIGN UP VIA GOOGLE" />
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+        <View style={styles.btnView}>
+          <TouchableNativeFeedback
+            onPress={() => {this._signOut()}}
             background={TouchableNativeFeedback.SelectableBackground()}
           >
             <View style={styles.fbBtn}>
@@ -110,7 +146,7 @@ const styles = StyleSheet.create({
     flex: 3,
     width: "85%"
   },
-  fbBtnView: {
+  btnView: {
     flex: 1
   },
   inputText: {
@@ -134,6 +170,16 @@ const styles = StyleSheet.create({
     width: 260,
     height: 50,
     borderColor: "blue",
+    borderWidth: 2,
+    borderRadius: 40,
+    backgroundColor: "transparent",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  googleBtn: {
+    width: 260,
+    height: 50,
+    borderColor: "red",
     borderWidth: 2,
     borderRadius: 40,
     backgroundColor: "transparent",

@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "627298326712",
+    "firebase_url": "https://invision-1525947507471.firebaseio.com",
+    "project_id": "invision-1525947507471",
+    "storage_bucket": "invision-1525947507471.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627298326712:android:6d877259b0c5e163",
+        "android_client_info": {
+          "package_name": "com.invision"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627298326712-83hei57887aghhla402n14u2510g8jdr.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "627298326712-3r6apmrja71nv2qmbrigpm8cjm2sm2ie.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.invision",
+            "certificate_hash": "fb390fab345f591e4a7ecd0dba3dd35755af9038"
+          }
+        },
+        {
+          "client_id": "627298326712-9ecqq1qasl6seesiecsduca54jm9fhjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJhzfa_tUnGI6c0a0VymyVzP1mgDNBJQ8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "627298326712-83hei57887aghhla402n14u2510g8jdr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
